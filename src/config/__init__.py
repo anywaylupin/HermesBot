@@ -1,0 +1,5 @@
+TRADE_SYMBOL = 'BTC/USDT'
+TRADE_SIZE = 100
+TRADE_INTERVAL_SECONDS = 2
+
+from . import keys
