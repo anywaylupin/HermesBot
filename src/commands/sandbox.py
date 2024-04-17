@@ -1,7 +1,11 @@
+# Set sandbox mode for testing (if applicable)
+exchange.set_sandbox_mode(True)
+
 from . import abstract
 from telegram import Update
+from exchange import exchange
 
-COMMAND = "help"
+COMMAND = "sandbo"
 REPLY_TEXT = (
     "Available commands:\n"
     "/help - Display this help message\n"

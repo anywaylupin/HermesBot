@@ -1,5 +1,5 @@
 from bot import BotInstance
-from bot.commands import balance, help
+from commands import balance, help
 from keys import BOT_TOKEN, BOT_USERNAME
 
 if __name__ == "__main__":

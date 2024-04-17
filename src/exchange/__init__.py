@@ -8,6 +8,3 @@ exchange = ccxt.binance(
         "secret": SECRET_KEY,
     }
 )
-
-# Set sandbox mode for testing (if applicable)
-exchange.set_sandbox_mode(True)

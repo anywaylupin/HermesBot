@@ -11,7 +11,7 @@ class AbstractCommand(ABC):
     async def execute(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         try:
             print(f"Executing command: {self.command}")
-            await self._execute(update)
+            await self.on_execute(update)
         except Exception as e:
             print(
                 f"An error occurred while executing command '{self.command}': {str(e)}"
@@ -21,9 +21,5 @@ class AbstractCommand(ABC):
             )
 
     @abstractmethod
-    async def _execute(self, update: Update):
-        pass
-
-    def check_permissions(self, user_id: int):
-        # Add permission checking logic here if needed
+    async def on_execute(self, update: Update):
         pass

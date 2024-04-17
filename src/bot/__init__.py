@@ -1,4 +1,4 @@
-from bot.commands.abstract import AbstractCommand
+from commands.abstract import AbstractCommand
 from telegram import Update
 from telegram.ext import (
     Application,
@@ -7,7 +7,6 @@ from telegram.ext import (
     filters,
     ContextTypes,
 )
-from . import commands
 
 
 class BotInstance:
