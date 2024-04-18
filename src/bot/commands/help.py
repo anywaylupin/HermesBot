@@ -19,6 +19,9 @@ class HelpCommand(abstract.AbstractCommand):
     """
 
     def __init__(self):
+        """
+        Initializes the HelpCommand.
+        """
         super().__init__(COMMAND, REPLY_TEXT)
 
     async def on_execute(self, update: Update):

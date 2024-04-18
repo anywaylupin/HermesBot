@@ -31,7 +31,7 @@ class SandboxCommand(abstract.AbstractCommand):
         return self.__sandbox_mode
 
     @sandbox_mode.setter
-    def sandbox_mode(self, enable):
+    def sandbox_mode(self, enable: bool):
         """
         Set the sandbox mode.
 

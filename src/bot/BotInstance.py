@@ -1,7 +1,12 @@
 from bot.commands.abstract import AbstractCommand
 from bot.messages import handle_error
 from helpers import logger
-from telegram.ext import Application, CommandHandler, MessageHandler, filters
+from telegram import ext, Update
+from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler
+from telegram.ext.filters import BaseFilter, TEXT
+from typing import Callable
+
+MessageCallback = Callable[[Update, ContextTypes.DEFAULT_TYPE], None]
 
 
 class BotInstance:
@@ -14,15 +19,15 @@ class BotInstance:
         Initializes the BotInstance.
 
         Args:
-            name: The name of the bot.
-            bot_token: The token required to authenticate the bot.
-            poll_interval_seconds: The interval, in seconds, at which the bot should poll for updates.
+            name (str): The name of the bot.
+            bot_token (str): The token required to authenticate the bot.
+            poll_interval_seconds (int, optional): The interval, in seconds, at which the bot should poll for updates.
         """
         self.name = name
         self.bot_token = bot_token
         self.poll_interval_seconds = poll_interval_seconds
         self.app = Application.builder().token(self.bot_token).build()
-        self.app.add_error_handler(MessageHandler(filters.TEXT, handle_error))
+        self.app.add_error_handler(MessageHandler(TEXT, handle_error))
 
     def start_polling(self):
         """
@@ -46,6 +51,16 @@ class BotInstance:
         handler = CommandHandler(command, callback)
         self.app.add_handler(handler)
 
-    def add_handler(self, filters: filters.BaseFilter | None, callback):
+    def add_handler(self, filters: BaseFilter | None, callback: MessageCallback):
+        """
+        Adds a message handler with optional filters to the bot application.
+
+        Args:
+            filters: Optional filters to apply to the message handler.
+            callback: The callback function to be executed when the message matches the filters.
+
+        Returns:
+            MessageHandler: The added message handler.
+        """
         handler = MessageHandler(filters, callback)
         self.app.add_handler(handler)
