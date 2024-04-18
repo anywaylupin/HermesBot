@@ -1,2 +1,2 @@
 from . import calculate
-from . import logging
+from . import logger

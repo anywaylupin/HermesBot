@@ -1,15 +1,15 @@
 from . import abstract
+from . import balance
+from . import sandbox
 from telegram import Update
 
 COMMAND = "help"
+DESCRIPTION = "Display the available commands and their descriptions"
 REPLY_TEXT = (
     "Available commands:\n"
-    "/help - Display this help message\n"
-    "/balance - Display your current balance\n"
-    "/open_orders - Display your open orders\n"
-    "/trade_history - Display your trade history\n"
-    "/buy <symbol> <quantity> - Place a buy order\n"
-    "/sell <symbol> <quantity> - Place a sell order"
+    f"/{COMMAND} - {DESCRIPTION}\n"
+    f"/{balance.COMMAND} - {balance.DESCRIPTION}\n"
+    f"/{sandbox.COMMAND} - {sandbox.DESCRIPTION}\n"
 )
 
 
