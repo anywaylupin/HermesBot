@@ -1,50 +1,45 @@
 # HermèsBot
 
-HermèsBot is a Telegram bot designed to assist cryptocurrency traders, specifically focusing on the Smart Money Concept (SMC). It provides notifications when candlestick patterns align with the SMC principles, helping traders make informed decisions.
-
-## Description
-
-HermèsBot is tailored to cryptocurrency traders interested in the Smart Money Concept, which emphasizes identifying market movements driven by institutional investors or "smart money." The bot monitors candlestick patterns and alerts users when patterns suggestive of smart money activity occur.
+HermèsBot is a Telegram bot for cryptocurrency traders focusing on the Smart Money Concept (SMC). It notifies users about candlestick patterns aligning with SMC principles, aiding in informed trading decisions.
 
 ## Installation
 
-Python3 is required!
+Before running HermèsBot locally, ensure you have the following:
+
+- Bot Username and Token: Obtain a Telegram bot username and token.
+- Binance API Key and Secret: Generate API key and secret from Binance for market data.
+
+Place these keys in the `keys` folder to enable local bot execution.
 
 To install HermèsBot, follow these steps:
 
-Clone the Repository: Clone the HermèsBot repository from GitHub.
-Install Dependencies: Install the required dependencies using pip3 install -r requirements.txt.
-Set Up Configuration: Configure the bot token and other settings in the config.py file.
-Run the Bot: Run the bot using python3 main.py.
+1. Clone the Repository: Clone the HermèsBot repository from GitHub.
+2. Install Dependencies: Use `pip3 install -r requirements.txt` to install required dependencies.
+3. Set Up Configuration: Configure bot token and settings in `config.py`.
+4. Run the Bot: Execute the bot using `python3 main.py`.
 
 ## Usage
 
-Using HermèsBot is straightforward:
-
-Configure Settings: Set up your preferences and notification thresholds in the bot settings.
-
-Interact with the Bot: Chat with the bot in your Telegram group or direct message it for notifications and updates.
-
-Receive Notifications: Receive alerts when candlestick patterns matching the Smart Money Concept are detected.
+1. Configure Settings: Set preferences and notification thresholds in bot settings.
+2. Interact with the Bot: Chat in Telegram group or direct message the bot for updates.
+3. Receive Notifications: Get alerts when candlestick patterns matching SMC are detected.
 
 ## Commands
 
-HermèsBot supports the following commands:
+HermèsBot supports these commands:
 
-```bash
-/balance #Check your account balance.
-/help #Get help and instructions on using the bot.
-/sandbox #Toggle the sandbox mode for testing purposes.
-```
+- `/balance`: Check account balance.
+- `/help`: Get bot instructions and assistance.
+- `/sandbox`: Toggle sandbox mode for testing purposes.
 
 ## Contributing
 
 Contributions to HermèsBot are welcome! You can contribute by:
 
-Reporting bugs or issues.
-Suggesting new features or improvements.
-Submitting pull requests with code changes or enhancements.
+- Reporting bugs or issues.
+- Suggesting new features or improvements.
+- Submitting pull requests with code changes or enhancements.
 
 ## License
 
-HermèsBot is licensed under the [insert license type]. See the LICENSE file for more information.
+HermèsBot is licensed under the [insert license type]. Refer to the LICENSE file for details.
