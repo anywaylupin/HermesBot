@@ -7,6 +7,9 @@ class BinanceExchange:
     def __init__(self, config: dict):
         self.__exchange = ccxt.binance(config)
 
+    def set_sandbox_mode(self, enable: bool):
+        self.__exchange.set_sandbox_mode(enable)
+
     def fetch_balance(self, symbol: str):
         """
         Fetches the balance for the specified cryptocurrency symbol.

@@ -1,4 +1,4 @@
-from libs import LoggerInstance
+from libs import logger
 from telegram import Update
 from telegram.ext import CallbackContext
 
@@ -12,7 +12,7 @@ async def handle_message(update: Update, context: CallbackContext):
         context: The context passed by the telegram.ext module.
     """
     msg = "Command is not recognized"
-    await LoggerInstance.reply_warn(update, msg)
+    await logger.reply_warn(update, msg)
 
 
 async def handle_error(update: Update, context: CallbackContext):
@@ -23,4 +23,4 @@ async def handle_error(update: Update, context: CallbackContext):
         update: The incoming update.
         context: The context passed by the telegram.ext module.
     """
-    LoggerInstance.error(f"Update {update} caused an error: {context.error}")
+    logger.error(f"Update {update} caused an error: {context.error}")

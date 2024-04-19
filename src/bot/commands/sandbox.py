@@ -54,7 +54,7 @@ class SandboxCommand(abstract.AbstractCommand):
                 raise ValueError("Invalid command format")
 
             self.sandbox_mode = enable
-            exchange.binance.set_sandbox_mode(enable)
+            exchange.set_sandbox_mode(enable)
 
             response = f"Sandbox mode {'enabled' if enable else 'disabled'}"
             await self.reply_text(update, response)
