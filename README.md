@@ -1,4 +1,4 @@
-# HermèsBot
+# HermèsBot [UNDER DEVELOPMENT]
 
 HermèsBot is a Telegram bot for cryptocurrency traders focusing on the Smart Money Concept (SMC). It notifies users about candlestick patterns aligning with SMC principles, aiding in informed trading decisions.
 
