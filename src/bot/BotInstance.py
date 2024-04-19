@@ -15,9 +15,9 @@ class BotInstance:
         Initializes the BotInstance.
 
         Args:
-            name (str): The name of the bot.
-            bot_token (str): The token required to authenticate the bot.
-            poll_interval_seconds (int, optional): The interval, in seconds, at which the bot should poll for updates.
+            name: The name of the bot.
+            bot_token: The token required to authenticate the bot.
+            poll_interval_seconds: The interval, in seconds, at which the bot should poll for updates.
         """
         self.name = name
         self.bot_token = bot_token

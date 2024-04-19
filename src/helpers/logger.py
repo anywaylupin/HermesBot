@@ -1,7 +1,7 @@
 import logging
 from telegram import Message, Update
 
-# Initialize logger
+# Initialize instance
 instance = logging.getLogger(__name__)
 instance.setLevel(logging.INFO)
 formatter = logging.Formatter("[%(levelname)s]-%(asctime)s: %(message)s")
@@ -14,9 +14,9 @@ instance.addHandler(ch)
 
 def info(msg: str):
     """
-    Log an info-level message.
+    Logs an info-level message.
 
-    Parameters:
+    Args:
         msg: The message to be logged.
     """
     instance.info(msg)
@@ -24,9 +24,9 @@ def info(msg: str):
 
 def warn(msg: str):
     """
-    Log a warning message.
+    Logs a warning message.
 
-    Parameters:
+    Args:
         msg: The message to be logged.
     """
     instance.warning(msg)
@@ -34,37 +34,51 @@ def warn(msg: str):
 
 def error(msg: str):
     """
-    Log an error message.
+    Logs an error message.
 
-    Parameters:
+    Args:
         msg: The message to be logged.
     """
     instance.error(msg)
 
 
 async def reply_text(update: Update, msg: str):
+    """
+    Replies to a Telegram message and logs the reply as an info-level message.
+
+    Args:
+        update: The Telegram update.
+        msg: The reply message text.
+    """
     message = update.message
     if isinstance(message, Message):
         await message.reply_text(msg)
         info(msg)
     else:
-        error_msg = "Expected Message type for update, got something else"
+        error_msg = "Expected Message type for update, received different type."
         error(error_msg)
         raise TypeError(error_msg)
 
 
 async def reply_warn(update: Update, msg: str):
     """
-    Log a warning message and reply to the user.
+    Logs a warning message, then replies to the Telegram update with the same message.
 
-    Parameters:
-        update: The incoming update.
-        msg: The message to be logged and replied.
+    Args:
+        update: The Telegram update.
+        msg: The message to be logged and replied with.
     """
     warn(msg)
     await reply_text(update, msg)
 
 
 async def reply_error(update: Update, msg: str):
+    """
+    Logs an error message, then replies to the Telegram update with the same message.
+
+    Args:
+        update: The Telegram update.
+        msg: The message to be logged and replied with.
+    """
     error(msg)
     await reply_text(update, msg)

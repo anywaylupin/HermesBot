@@ -8,7 +8,7 @@ def create_bot(name: str, bot_token: str, poll_interval_seconds: int):
     """
     Create and configure a bot instance.
 
-    Parameters:
+    Args:
         name: The name of the bot.
         bot_token: The token required to authenticate the bot.
         poll_interval_seconds: The interval, in seconds, at which the bot should poll for updates.
