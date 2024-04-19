@@ -27,7 +27,4 @@ class HelpCommand(abstract.AbstractCommand):
         super().__init__(COMMAND, REPLY_TEXT)
 
     async def on_execute(self, update: Update, text: str):
-        """
-        Executes the HelpCommand by replying with the available commands and their descriptions.
-        """
         await self.reply_text(update, self.default_text)

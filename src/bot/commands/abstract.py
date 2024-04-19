@@ -26,6 +26,13 @@ class AbstractCommand(ABC):
 
     @abstractmethod
     async def on_execute(self, update: Update, text=""):
+        """
+        Executes the command.
+
+        Args:
+            update: The incoming update.
+            text: The text message from user's input.
+        """
         pass
 
     async def reply_text(self, update: Update, msg: str):

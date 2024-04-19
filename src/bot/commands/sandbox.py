@@ -10,17 +10,16 @@ class SandboxCommand(abstract.AbstractCommand):
     """
     Command to toggle the exchange sandbox mode.
 
-    Attributes:
-        command: The command string.
-        sandbox_mode: Indicates whether the sandbox mode is enabled.
+    Args:
+        sandbox_mode: True to enable, False to disable the sandbox mode.
     """
 
-    def __init__(self):
+    def __init__(self, sandbox_mode=False):
         """
         Initializes the SandboxCommand.
         """
         super().__init__(COMMAND)
-        self.__sandbox_mode = False
+        self.__sandbox_mode = sandbox_mode
 
     @property
     def sandbox_mode(self) -> bool:
@@ -42,13 +41,6 @@ class SandboxCommand(abstract.AbstractCommand):
         self.__sandbox_mode = enable
 
     async def on_execute(self, update: Update, text: str):
-        """
-        Executes the SandboxCommand by toggling the exchange sandbox mode.
-
-        Args:
-            update: The incoming update.
-        """
-
         try:
             msg_parts = text.lower().split()
             action = msg_parts[-1]

@@ -20,12 +20,6 @@ class BalanceCommand(abstract.AbstractCommand):
         self.currencies = None
 
     async def on_execute(self, update: Update, text: str):
-        """
-        Executes the BalanceCommand by fetching and replying with the user's balance.
-
-        Args:
-            update: The incoming update.
-        """
         try:
             symbol = text.split(f"/{self.command}")[1].strip()
 
@@ -59,7 +53,6 @@ class BalanceCommand(abstract.AbstractCommand):
             update: The incoming update.
             symbol: The invalid symbol provided by the user.
         """
-
         try:
             if self.currencies:
                 reply = (
