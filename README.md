@@ -37,7 +37,3 @@ Contributions to HermèsBot are welcome! You can contribute by:
 - Reporting bugs or issues.
 - Suggesting new features or improvements.
 - Submitting pull requests with code changes or enhancements.
-
-## License
-
-HermèsBot is licensed under the [insert license type]. Refer to the LICENSE file for details.
