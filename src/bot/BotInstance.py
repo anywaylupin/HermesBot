@@ -1,4 +1,4 @@
-from bot.commands.abstract import AbstractCommand
+from bot.commands.AbstractCommand import AbstractCommand
 from bot.messages import handle_error
 from libs import logger
 from telegram.ext import Application, CommandHandler, MessageHandler

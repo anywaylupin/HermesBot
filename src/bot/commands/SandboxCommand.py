@@ -1,12 +1,11 @@
-from . import abstract
+from . import AbstractCommand
 from libs import exchange
 from telegram import Update
 
 COMMAND = "sandbox"
-DESCRIPTION = "Toggle the exchange sandbox mode"
 
 
-class SandboxCommand(abstract.AbstractCommand):
+class SandboxCommand(AbstractCommand):
     """
     Command to toggle the exchange sandbox mode.
 

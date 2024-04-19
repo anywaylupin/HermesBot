@@ -1,13 +1,12 @@
-from . import abstract
+from . import AbstractCommand
 from ccxt.base.types import Balance
 from libs import exchange
 from telegram import Update
 
 COMMAND = "balance"
-DESCRIPTION = "Display the user's current balance for a specified cryptocurrency symbol"
 
 
-class BalanceCommand(abstract.AbstractCommand):
+class BalanceCommand(AbstractCommand):
     """
     A command to display the user's current balance for a specified cryptocurrency symbol.
     """

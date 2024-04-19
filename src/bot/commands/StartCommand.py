@@ -1,12 +1,11 @@
-from . import abstract
+from . import AbstractCommand
 from libs import exchange, logger
 from telegram import Update
 
 COMMAND = "start"
-DESCRIPTION = "To start watching Binance graphs that match the smart money concept"
 
 
-class StartCommand(abstract.AbstractCommand):
+class StartCommand(AbstractCommand):
     """
     A command to start watching Binance graphs that match the smart money concept.
     """

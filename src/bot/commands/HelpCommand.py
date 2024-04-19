@@ -1,21 +1,17 @@
-from . import abstract
-from . import balance
-from . import sandbox
-from . import start
+from . import AbstractCommand
 from telegram import Update
 
 COMMAND = "help"
-DESCRIPTION = "Display the available commands and their descriptions"
 REPLY_TEXT = (
     "Available commands:\n"
-    f"/{COMMAND} - {DESCRIPTION}\n"
-    f"/{balance.COMMAND} - {balance.DESCRIPTION}\n"
-    f"/{sandbox.COMMAND} - {sandbox.DESCRIPTION}\n"
-    f"/{start.COMMAND} - {start.DESCRIPTION}\n"
+    "/help - Display the available commands and their descriptions\n"
+    "/balance - Display the user's current balance for a specified cryptocurrency symbol\n"
+    "/sandbox - Toggle the exchange sandbox mode\n"
+    "/start - To start watching Binance graphs that match the smart money concept\n"
 )
 
 
-class HelpCommand(abstract.AbstractCommand):
+class HelpCommand(AbstractCommand):
     """
     A command to display the available commands and their descriptions.
     """
