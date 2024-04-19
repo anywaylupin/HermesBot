@@ -1,6 +1,6 @@
-from bot.BotInstance import BotInstance
-from bot.commands import command_set
-from bot.messages import handle_message
+from .BotInstance import BotInstance
+from .commands import command_set
+from .messages import handle_message
 from telegram.ext import filters
 
 
