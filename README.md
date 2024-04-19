@@ -9,13 +9,11 @@ Before running HermèsBot locally, ensure you have the following:
 - Bot Username and Token: Obtain a Telegram bot username and token.
 - Binance API Key and Secret: Generate API key and secret from Binance for market data.
 
-Place these keys in the `keys` folder to enable local bot execution.
-
 To install HermèsBot, follow these steps:
 
 1. Clone the Repository: Clone the HermèsBot repository from GitHub.
 2. Install Dependencies: Use `pip3 install -r requirements.txt` to install required dependencies.
-3. Set Up Configuration: Configure bot token and settings in `config.py`.
+3. Place the required keys in the `keys` folder to enable local bot execution.
 4. Run the Bot: Execute the bot using `python3 main.py`.
 
 ## Usage
