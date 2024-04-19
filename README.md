@@ -35,7 +35,6 @@ HermèsBot supports the following commands:
 /balance #Check your account balance.
 /help #Get help and instructions on using the bot.
 /sandbox #Toggle the sandbox mode for testing purposes.
-/notifications #Manage notification settings and thresholds.
 ```
 
 ## Contributing
