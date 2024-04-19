@@ -1,9 +1,12 @@
-import ccxt
 from keys import API_KEY, SECRET_KEY
+from libs.BinanceExchange import BinanceExchange
+from libs.LoggerInstance import LoggerInstance
+from libs.Plotter import Plotter
 
-exchange_config = {
-    "apiKey": API_KEY,
-    "secret": SECRET_KEY,
-}
+config = {"apiKey": API_KEY, "secret": SECRET_KEY}
 
-exchange = ccxt.binance(exchange_config)
+exchange = BinanceExchange(config)
+
+logger = LoggerInstance()
+
+plotter = Plotter()

@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from helpers import logger
+from libs import logger
 from telegram import Message, Update
 from telegram.ext import ContextTypes
 

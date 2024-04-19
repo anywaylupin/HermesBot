@@ -24,7 +24,7 @@ class BalanceCommand(abstract.AbstractCommand):
             symbol = text.split(f"/{self.command}")[1].strip()
 
             if self.currencies is None:
-                self.currencies = fetch_currencies()
+                self.currencies = exchange.fetch_currencies()
                 if not isinstance(self.currencies, list):
                     raise TypeError(
                         "Expected list type for currencies, got something else"
@@ -32,7 +32,7 @@ class BalanceCommand(abstract.AbstractCommand):
                 self.currencies.sort()
 
             if symbol in self.currencies:
-                balance = fetch_balance(symbol)
+                balance = exchange.fetch_balance(symbol)
                 await self.reply_text(
                     update,
                     f"Your balance for {symbol} is:\n{format_balance_message(balance)}",
@@ -68,32 +68,6 @@ class BalanceCommand(abstract.AbstractCommand):
             await self.reply_text(update, reply)
         except Exception as e:
             raise ValueError(e)
-
-
-def fetch_balance(symbol: str):
-    """
-    Fetches the balance for the specified cryptocurrency symbol.
-
-    Args:
-        symbol: The cryptocurrency symbol.
-
-    Returns:
-        The balance information.
-    """
-    balance = exchange.fetch_balance()
-    return balance.get(symbol)
-
-
-def fetch_currencies():
-    """
-    Fetches the list of available cryptocurrencies in the user's account.
-
-    Returns:
-        A list of available cryptocurrency symbols.
-    """
-    info = fetch_balance("info")
-    balances = info.get("balances")  # type: ignore
-    return [balance["asset"] for balance in balances]  # type: ignore
 
 
 def format_balance_message(balance: Balance | None):

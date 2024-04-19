@@ -1,5 +1,5 @@
 from . import abstract
-from helpers import logger
+from libs import exchange, logger
 from telegram import Update
 
 COMMAND = "start"
@@ -25,6 +25,7 @@ class StartCommand(abstract.AbstractCommand):
             update: The incoming update.
         """
         try:
+            await exchange.fetch_ohlcv("BTC/USDT")
             await self.reply_text(
                 update, "Started watching Binance graphs for smart money concept."
             )
