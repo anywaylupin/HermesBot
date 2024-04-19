@@ -1,12 +1,10 @@
 from keys import API_KEY, SECRET_KEY
 from libs.BinanceExchange import BinanceExchange
 from libs.LoggerInstance import LoggerInstance
-from libs.Plotter import Plotter
+from libs.PlotterInstance import PlotterInstance
 
-config = {"apiKey": API_KEY, "secret": SECRET_KEY}
-
-exchange = BinanceExchange(config)
+exchange = BinanceExchange({"apiKey": API_KEY, "secret": SECRET_KEY})
 
 logger = LoggerInstance()
 
-plotter = Plotter()
+plotter = PlotterInstance()

@@ -12,7 +12,7 @@ class GraphConfig(TypedDict):
     marker: str
 
 
-class Plotter:
+class PlotterInstance:
     def draw(self, config: GraphConfig):
         """
         Draws a price graph using matplotlib.
