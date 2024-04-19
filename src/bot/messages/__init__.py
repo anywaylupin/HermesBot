@@ -12,10 +12,10 @@ async def handle_message(update: Update, context: CallbackContext):
         context: The context passed by the telegram.ext module.
     """
     msg = "Command is not recognized"
-    await logger.update_warn(update, msg)
+    await logger.reply_warn(update, msg)
 
 
-def handle_error(update: Update, context: CallbackContext):
+async def handle_error(update: Update, context: CallbackContext):
     """
     Handles errors that occur during the bot's operation.
 

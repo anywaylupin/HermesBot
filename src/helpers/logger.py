@@ -1,5 +1,5 @@
 import logging
-from telegram import Update
+from telegram import Message, Update
 
 # Initialize logger
 instance = logging.getLogger(__name__)
@@ -17,7 +17,7 @@ def info(msg: str):
     Log an info-level message.
 
     Parameters:
-        msg (str): The message to be logged.
+        msg: The message to be logged.
     """
     instance.info(msg)
 
@@ -27,7 +27,7 @@ def warn(msg: str):
     Log a warning message.
 
     Parameters:
-        msg (str): The message to be logged.
+        msg: The message to be logged.
     """
     instance.warning(msg)
 
@@ -37,30 +37,34 @@ def error(msg: str):
     Log an error message.
 
     Parameters:
-        msg (str): The message to be logged.
+        msg: The message to be logged.
     """
     instance.error(msg)
 
 
-async def update_warn(update: Update, msg: str):
+async def reply_text(update: Update, msg: str):
+    message = update.message
+    if isinstance(message, Message):
+        await message.reply_text(msg)
+        info(msg)
+    else:
+        error_msg = "Expected Message type for update, got something else"
+        error(error_msg)
+        raise TypeError(error_msg)
+
+
+async def reply_warn(update: Update, msg: str):
     """
     Log a warning message and reply to the user.
 
     Parameters:
-        update (telegram.Update): The incoming update.
-        msg (str): The message to be logged and replied.
+        update: The incoming update.
+        msg: The message to be logged and replied.
     """
     warn(msg)
-    await update.message.reply_text(msg)
+    await reply_text(update, msg)
 
 
-async def update_error(update: Update, msg: str):
-    """
-    Log an error message and reply to the user.
-
-    Parameters:
-        update (telegram.Update): The incoming update.
-        msg (str): The message to be logged and replied.
-    """
+async def reply_error(update: Update, msg: str):
     error(msg)
-    await update.message.reply_text(msg)
+    await reply_text(update, msg)

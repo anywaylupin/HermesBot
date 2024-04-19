@@ -1,6 +1,7 @@
 from . import abstract
 from . import balance
 from . import sandbox
+from . import start
 from telegram import Update
 
 COMMAND = "help"
@@ -10,6 +11,7 @@ REPLY_TEXT = (
     f"/{COMMAND} - {DESCRIPTION}\n"
     f"/{balance.COMMAND} - {balance.DESCRIPTION}\n"
     f"/{sandbox.COMMAND} - {sandbox.DESCRIPTION}\n"
+    f"/{start.COMMAND} - {start.DESCRIPTION}\n"
 )
 
 
@@ -24,8 +26,8 @@ class HelpCommand(abstract.AbstractCommand):
         """
         super().__init__(COMMAND, REPLY_TEXT)
 
-    async def on_execute(self, update: Update):
+    async def on_execute(self, update: Update, text: str):
         """
         Executes the HelpCommand by replying with the available commands and their descriptions.
         """
-        await update.message.reply_text(self.reply_text)
+        await self.reply_text(update, self.default_text)

@@ -1,12 +1,8 @@
 from bot.commands.abstract import AbstractCommand
 from bot.messages import handle_error
 from helpers import logger
-from telegram import ext, Update
-from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler
+from telegram.ext import Application, CommandHandler, MessageHandler
 from telegram.ext.filters import BaseFilter, TEXT
-from typing import Callable
-
-MessageCallback = Callable[[Update, ContextTypes.DEFAULT_TYPE], None]
 
 
 class BotInstance:
@@ -27,7 +23,7 @@ class BotInstance:
         self.bot_token = bot_token
         self.poll_interval_seconds = poll_interval_seconds
         self.app = Application.builder().token(self.bot_token).build()
-        self.app.add_error_handler(MessageHandler(TEXT, handle_error))
+        self.app.add_error_handler(MessageHandler(TEXT, handle_error))  # type: ignore
 
     def start_polling(self):
         """
@@ -51,7 +47,7 @@ class BotInstance:
         handler = CommandHandler(command, callback)
         self.app.add_handler(handler)
 
-    def add_handler(self, filters: BaseFilter | None, callback: MessageCallback):
+    def add_handler(self, filters: BaseFilter | None, callback):
         """
         Adds a message handler with optional filters to the bot application.
 

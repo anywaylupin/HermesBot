@@ -1,6 +1,5 @@
 from . import abstract
 from ccxt.base.types import Balance
-from helpers import logger
 from libs import exchange
 from telegram import Update
 
@@ -20,32 +19,36 @@ class BalanceCommand(abstract.AbstractCommand):
         super().__init__(COMMAND)
         self.currencies = None
 
-    async def on_execute(self, update: Update):
+    async def on_execute(self, update: Update, text: str):
         """
         Executes the BalanceCommand by fetching and replying with the user's balance.
 
         Args:
             update: The incoming update.
         """
-        symbol = update.message.text.split(f"/{self.command}")[1].strip()
         try:
+            symbol = text.split(f"/{self.command}")[1].strip()
+
             if self.currencies is None:
                 self.currencies = fetch_currencies()
-                if isinstance(self.currencies, list):
-                    self.currencies.sort()
+                if not isinstance(self.currencies, list):
+                    raise TypeError(
+                        "Expected list type for currencies, got something else"
+                    )
+                self.currencies.sort()
 
             if symbol in self.currencies:
                 balance = fetch_balance(symbol)
-                await update.message.reply_text(
-                    f"Your balance for {symbol} is:\n{format_balance_message(balance)}"
+                await self.reply_text(
+                    update,
+                    f"Your balance for {symbol} is:\n{format_balance_message(balance)}",
                 )
             else:
                 await self.__reply_currencies(update, symbol)
-
         except Exception as e:
-            await logger.update_error(
+            await self.reply_error(
                 update,
-                f"Sorry, could not retrieve balance. Please try again.\n{str(e)}",
+                f"Sorry, could not retrieve balance. Please try again. Error: {str(e)}",
             )
 
     async def __reply_currencies(self, update: Update, symbol: str):
@@ -56,21 +59,22 @@ class BalanceCommand(abstract.AbstractCommand):
             update: The incoming update.
             symbol: The invalid symbol provided by the user.
         """
-        if self.currencies:
-            reply = (
-                (
+
+        try:
+            if self.currencies:
+                reply = (
                     f"Sorry, could not retrieve balance for {symbol}."
                     if symbol
-                    else "Please provide symbol to retrieve balance."
+                    else "Please provide a symbol to retrieve the balance."
                 )
-                + "\nAvailable currencies in your account:\n"
-                + " | ".join(f"{currency}" for currency in self.currencies)
-            )
+                reply += "\nAvailable currencies in your account:\n"
+                reply += " | ".join(f"{currency}" for currency in self.currencies)
+            else:
+                reply = "There are no available currencies in your account."
 
-        else:
-            reply = "There are no available currencies in your account."
-
-        await update.message.reply_text(reply)
+            await self.reply_text(update, reply)
+        except Exception as e:
+            raise ValueError(e)
 
 
 def fetch_balance(symbol: str):
@@ -95,11 +99,11 @@ def fetch_currencies():
         A list of available cryptocurrency symbols.
     """
     info = fetch_balance("info")
-    balances = info.get("balances")
-    return [balance["asset"] for balance in balances]
+    balances = info.get("balances")  # type: ignore
+    return [balance["asset"] for balance in balances]  # type: ignore
 
 
-def format_balance_message(balance: Balance):
+def format_balance_message(balance: Balance | None):
     """
     Formats the balance message.
 
@@ -109,6 +113,4 @@ def format_balance_message(balance: Balance):
     Returns:
         The formatted balance message.
     """
-    return (
-        f"Free: {balance['free']}\nUsed: {balance['used']}\nTotal: {balance['total']}"
-    )
+    return f"Free: {balance['free']}\nUsed: {balance['used']}\nTotal: {balance['total']}"  # type: ignore
