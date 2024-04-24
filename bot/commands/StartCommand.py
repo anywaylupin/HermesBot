@@ -1,5 +1,5 @@
 from . import AbstractCommand
-from libs import exchange, logger
+from libs import exchange, logger, plotter
 from telegram import Update
 
 COMMAND = "start"
@@ -24,10 +24,17 @@ class StartCommand(AbstractCommand):
             update: The incoming update.
         """
         try:
-            await exchange.fetch_ohlcv("BTC/USDT")
+            data_set = exchange.fetch_ohlcv("BTC/USDT")
+
             await self.reply_text(
                 update, "Started watching Binance graphs for smart money concept."
             )
+
+            for data in data_set:
+                await self.reply_text(
+                    update,
+                    f"Timestamp: {data["timestamp"]}\nO: {data['open']}\nH: {data['high']}\nL: {data['low']}\nC: {data['close']}\nV: {data['volume']}\n",
+                )
         except Exception as e:
             await logger.reply_error(
                 update,

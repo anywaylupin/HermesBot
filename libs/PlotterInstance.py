@@ -9,7 +9,6 @@ class GraphConfig(TypedDict):
     ylabel: str
     title: str
     grid: bool
-    marker: str
 
 
 class PlotterInstance:

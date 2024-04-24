@@ -6,6 +6,7 @@ REPLY_TEXT = (
     "Available commands:\n"
     "/help - Display the available commands and their descriptions\n"
     "/balance - Display the user's current balance for a specified cryptocurrency symbol\n"
+    "/bottom_fishing - Start or stop watching Binance graphs for bottom fishing strategy.\n"
     "/sandbox - Toggle the exchange sandbox mode\n"
     "/start - To start watching Binance graphs that match the smart money concept\n"
 )

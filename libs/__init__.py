@@ -1,5 +1,6 @@
 from keys import API_KEY, SECRET_KEY
 from .BinanceExchange import BinanceExchange
+from .Candle import Candle
 from .LoggerInstance import LoggerInstance
 from .PlotterInstance import PlotterInstance
 
