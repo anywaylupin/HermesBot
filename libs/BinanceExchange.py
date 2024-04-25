@@ -25,7 +25,7 @@ class BinanceExchange:
     def set_sandbox_mode(self, enable: bool):
         self.__exchange.set_sandbox_mode(enable)
 
-    def fetch_balance(self, symbol: str):
+    def fetch_balance(self, symbol: str | None = None):
         """
         Fetches the balance for the specified cryptocurrency symbol.
 
@@ -35,8 +35,13 @@ class BinanceExchange:
         Returns:
             The balance information.
         """
-        balance = self.__exchange.fetch_balance()
-        return balance.get(symbol)
+        balances = self.__exchange.fetch_balance()
+        if symbol == None:
+            return balances
+
+        else:
+            balance = balances.get(symbol)
+            return balances if balance == None else balance
 
     def fetch_currencies(self):
         """
