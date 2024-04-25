@@ -1,10 +1,9 @@
-from xml.etree.ElementInclude import include
 from . import AbstractCommand
 from ccxt.base.types import OrderSide
 from libs import exchange, logger
 from time import sleep
 from telegram import Update
-from typing import TypedDict, Union
+from typing import TypedDict
 
 COMMAND = "bottom_fishing"
 
